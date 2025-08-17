@@ -1,0 +1,20 @@
+idp_provider: auth0
+idp_provider_url: https://PUT-AUTH0-DOMAIN-HERE
+idp_client_id: PUT-AUTH0-CLIENT-ID-HERE
+idp_client_secret: PUT-AUTH0-CLIENT-SECRET-HERE
+
+ssh_address: 0.0.0.0:22
+ssh_user_ca_key_file: /pomerium/ca_key
+ssh_host_key_files:
+  - /pomerium/pomerium_ssh_host_ed25519_key
+  - /pomerium/pomerium_ssh_host_rsa_key
+  - /pomerium/pomerium_ssh_host_ecdsa_key
+
+routes:
+  - from: ssh://node1
+    to: ssh://192.168.10.230:22
+    policy:
+      - allow:
+          and:
+            - email:
+                is: email@example.com

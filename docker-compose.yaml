@@ -1,0 +1,11 @@
+services:
+  pomerium:
+    image: pomerium/pomerium:latest
+    volumes:
+      - ./config.yaml:/pomerium/config.yaml:ro
+      - ./ca_key:/pomerium/ca_key:ro
+      - ./ssh_host_ed25519_key:/pomerium/pomerium_ssh_host_ed25519_key:ro
+      - ./ssh_host_rsa_key:/pomerium/pomerium_ssh_host_rsa_key:ro
+      - ./ssh_host_ecdsa_key:/pomerium/pomerium_ssh_host_ecdsa_key:ro
+    ports:
+      - 22:22
